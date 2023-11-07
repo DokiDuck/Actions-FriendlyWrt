@@ -32,3 +32,30 @@ function init_theme() {
 EOL
 sed -i -e '/boardname=/r /tmp/appendtext.txt' friendlywrt/target/linux/rockchip/armv8/base-files/root/setup.sh
 # }}
+
+# {{ Add luci-app-ssr-plus
+(cd friendlywrt/package && {
+    [ -d helloworld ] && rm -rf helloworld
+    git clone https://github.com/fw876/helloworld.git --depth 1 -b main
+})
+cat >> configs/rockchip/01-nanopi <<EOL
+CONFIG_DEFAULT_luci-app-ssr-plus=y
+CONFIG_PACKAGE_luci-app-ssr-plus=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Client=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Server=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ChinaDNS_NG=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Simple_Obfs=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Client=y
+CONFIG_PACKAGE_luci-i18n-ssr-plus-zh-cn=y
+CONFIG_PACKAGE_shadowsocksr-libev-ssr-check=y
+CONFIG_PACKAGE_shadowsocksr-libev-ssr-local=y
+CONFIG_PACKAGE_shadowsocksr-libev-ssr-redir=y
+EOL
+# }}
+
+# {{ Add luci-app-adguardhome
+cat >> configs/rockchip/01-nanopi <<EOL
+CONFIG_PACKAGE_luci-app-adguardhome=y
+EOL
+# }}
