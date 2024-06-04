@@ -73,16 +73,3 @@ cat >> configs/rockchip/01-nanopi << EOF
 CONFIG_PACKAGE_luci-app-adguardhome=y
 EOF
 # }}
-
-# {{ Add luci-app-vlmcsd
-(cd friendlywrt/package && {
-    [ -d luci-app-vlmcsd ] && rm -rf luci-app-vlmcsd
-    git clone https://github.com/cokebar/luci-app-vlmcsd.git -b master
-})
-cat >> configs/rockchip/01-nanopi << EOF
-CONFIG_DEFAULT_luci-app-vlmcsd=y
-CONFIG_PACKAGE_luci-app-vlmcsd=y
-CONFIG_PACKAGE_luci-i18n-vlmcsd-zh-cn=y
-CONFIG_PACKAGE_vlmcsd=y
-EOF
-# }}
