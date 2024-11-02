@@ -64,16 +64,6 @@ CONFIG_PACKAGE_shadowsocksr-libev-ssr-redir=y
 EOF
 # }}
 
-# {{ Add luci-app-adguardhome
-(cd friendlywrt/package && {
-    [ -d luci-app-adguardhome ] && rm -rf luci-app-adguardhome
-    git clone https://github.com/rufengsuixing/luci-app-adguardhome.git -b master
-})
-cat >> configs/rockchip/01-nanopi << EOF
-CONFIG_PACKAGE_luci-app-adguardhome=y
-EOF
-# }}
-
 # {{ Add luci-app-vlmcsd
 (cd friendlywrt/package && {
     [ -d luci-app-vlmcsd ] && rm -rf luci-app-vlmcsd
